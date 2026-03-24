@@ -1,0 +1,568 @@
+/* ── Reset básico ─────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Variables CSS (Paleta activa) ────────────────── */
+:root {
+    /* Banner marquee */
+    --banner-bg:      #ffff00;
+    --banner-border:  #ffee44;
+    --banner-glow-1:  rgba(255,255,0,0.6);
+    --banner-glow-2:  rgba(255,255,0,0.3);
+
+    /* Subtítulo */
+    --sub-color:      #ff00cc;
+    --sub-glow:       rgba(255,0,204,0.5);
+
+    /* Tarjeta 1 — Tic Tac Toe */
+    --c1:             #ffff00;
+    --c1-rgb:         255, 255, 0;
+    --c1-bg:          #1a1a00;
+    --c1-light:       #ffff88;
+
+    /* Tarjeta 2 — Ahorcado */
+    --c2:             #00ffcc;
+    --c2-rgb:         0, 255, 204;
+    --c2-bg:          #001a15;
+    --c2-light:       #88ffee;
+
+    /* Tarjeta 3 — High Low Card */
+    --c3:             #ff00cc;
+    --c3-rgb:         255, 0, 204;
+    --c3-bg:          #1a0015;
+    --c3-light:       #ff88ee;
+
+    /* Tarjeta 4 — Simon */
+    --c4:             #00aaff;
+    --c4-rgb:         0, 170, 255;
+    --c4-bg:          #001520;
+    --c4-light:       #88ccff;
+}
+
+/* ── Body ─────────────────────────────────────────── */
+body {
+    background-color: #0a0014;
+    color: #ffffff;
+    font-family: 'Nunito', Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ── Efecto scanlines CRT ─────────────────────────── */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0, 0, 0, 0.15) 3px,
+        rgba(0, 0, 0, 0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* ── Contenedor principal ─────────────────────────── */
+.main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+/* ── Header ───────────────────────────────────────── */
+.site-header {
+    text-align: center;
+    padding: 20px 0 30px;
+}
+
+/* ── Marquee arcade ───────────────────────────────── */
+.arcade-marquee {
+    background-color: var(--banner-bg);
+    overflow: hidden;
+    padding: 6px 0;
+    margin-bottom: 24px;
+    border-top: 2px solid var(--banner-border);
+    border-bottom: 2px solid var(--banner-border);
+    box-shadow: 0 0 18px var(--banner-glow-1), 0 0 40px var(--banner-glow-2);
+    transition: background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+
+.marquee-track {
+    display: inline-flex;
+    gap: 40px;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+}
+
+.marquee-track span {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ── Título principal ─────────────────────────────── */
+.title-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.title-glow {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2.4rem;
+    color: transparent;
+    text-shadow: 0 0 20px #ffffff, 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1.3;
+}
+
+.site-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2.4rem;
+    line-height: 1.3;
+    color: #ffffff;
+    text-shadow:
+        4px 4px 0 #440066,
+        6px 6px 0 #220033,
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 40px rgba(255, 255, 255, 0.4);
+}
+
+.site-subtitle {
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    color: var(--sub-color);
+    letter-spacing: 2px;
+    margin-top: 8px;
+    text-shadow: 0 0 8px var(--sub-color), 0 0 18px var(--sub-glow);
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+/* ── Grid de juegos ───────────────────────────────── */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+/* ── Tarjeta de juego (base) ──────────────────────── */
+.game-card {
+    background-color: #15002a;
+    border: 3px solid #440066;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s, border-color 0.4s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.game-card .card-number { transition: text-shadow 0.2s, color 0.4s; }
+.game-card .card-title  { transition: text-shadow 0.2s; }
+
+.game-card:active { transform: translateY(0); }
+
+/* ── Variante Tarjeta 1 ───────────────────────────── */
+.game-card--c1 { border-color: var(--c1); }
+.game-card--c1 .card-screen { background-color: var(--c1-bg); transition: background-color 0.4s; }
+.game-card--c1 .card-number { color: var(--c1); text-shadow: 0 0 6px rgba(var(--c1-rgb), 0.5); }
+
+.game-card--c1:hover {
+    box-shadow: 0 8px 24px rgba(var(--c1-rgb), 0.4), 0 0 50px rgba(var(--c1-rgb), 0.2);
+    border-color: var(--c1-light);
+}
+.game-card--c1:hover .card-number { text-shadow: 0 0 10px var(--c1), 0 0 20px var(--c1); }
+.game-card--c1:hover .card-title  { text-shadow: 0 0 8px rgba(var(--c1-rgb), 0.5); }
+
+/* ── Variante Tarjeta 2 ───────────────────────────── */
+.game-card--c2 { border-color: var(--c2); }
+.game-card--c2 .card-screen { background-color: var(--c2-bg); transition: background-color 0.4s; }
+.game-card--c2 .card-number { color: var(--c2); text-shadow: 0 0 6px rgba(var(--c2-rgb), 0.5); }
+
+.game-card--c2:hover {
+    box-shadow: 0 8px 24px rgba(var(--c2-rgb), 0.4), 0 0 50px rgba(var(--c2-rgb), 0.2);
+    border-color: var(--c2-light);
+}
+.game-card--c2:hover .card-number { text-shadow: 0 0 10px var(--c2), 0 0 20px var(--c2); }
+.game-card--c2:hover .card-title  { text-shadow: 0 0 8px rgba(var(--c2-rgb), 0.5); }
+
+/* ── Variante Tarjeta 3 ───────────────────────────── */
+.game-card--c3 { border-color: var(--c3); }
+.game-card--c3 .card-screen { background-color: var(--c3-bg); transition: background-color 0.4s; }
+.game-card--c3 .card-number { color: var(--c3); text-shadow: 0 0 6px rgba(var(--c3-rgb), 0.5); }
+
+.game-card--c3:hover {
+    box-shadow: 0 8px 24px rgba(var(--c3-rgb), 0.4), 0 0 50px rgba(var(--c3-rgb), 0.2);
+    border-color: var(--c3-light);
+}
+.game-card--c3:hover .card-number { text-shadow: 0 0 10px var(--c3), 0 0 20px var(--c3); }
+.game-card--c3:hover .card-title  { text-shadow: 0 0 8px rgba(var(--c3-rgb), 0.5); }
+
+/* ── Variante Tarjeta 4 ───────────────────────────── */
+.game-card--c4 { border-color: var(--c4); }
+.game-card--c4 .card-screen { background-color: var(--c4-bg); transition: background-color 0.4s; }
+.game-card--c4 .card-number { color: var(--c4); text-shadow: 0 0 6px rgba(var(--c4-rgb), 0.5); }
+
+.game-card--c4:hover {
+    box-shadow: 0 8px 24px rgba(var(--c4-rgb), 0.4), 0 0 50px rgba(var(--c4-rgb), 0.2);
+    border-color: var(--c4-light);
+}
+.game-card--c4:hover .card-number { text-shadow: 0 0 10px var(--c4), 0 0 20px var(--c4); }
+.game-card--c4:hover .card-title  { text-shadow: 0 0 8px rgba(var(--c4-rgb), 0.5); }
+.game-card--c4:hover .card-play-label {
+    color: var(--c4);
+    text-shadow: 0 0 8px var(--c4), 0 0 18px var(--c4), 0 0 30px rgba(var(--c4-rgb), 0.5);
+    letter-spacing: 2px;
+}
+
+/* ── Pantalla de la tarjeta ───────────────────────── */
+.card-screen {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255,255,255,0.08);
+}
+
+.card-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ── Preview Simon (4 cuadrantes) ─────────────────── */
+.simon-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 8px;
+}
+
+.simon-q {
+    border-radius: 5px;
+    transition: background-color 0.4s, box-shadow 0.4s;
+}
+
+.simon-q--c1 { background-color: var(--c1); box-shadow: 0 0 6px rgba(var(--c1-rgb), 0.7); }
+.simon-q--c2 { background-color: var(--c2); box-shadow: 0 0 6px rgba(var(--c2-rgb), 0.7); }
+.simon-q--c3 { background-color: var(--c3); box-shadow: 0 0 6px rgba(var(--c3-rgb), 0.7); }
+.simon-q--c4 { background-color: var(--c4); box-shadow: 0 0 6px rgba(var(--c4-rgb), 0.7); }
+
+/* ── Emoji doble Tic Tac Toe ──────────────────────── */
+.ttt-card-emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.ttt-emoji-main {
+    font-size: 2.5rem;
+    /* filter se actualiza via JS según la paleta activa */
+    filter: sepia(1) saturate(8) hue-rotate(30deg) brightness(1.1);
+    transition: filter 0.4s;
+}
+
+.ttt-emoji-sub {
+    font-size: 1.875rem;
+    filter: brightness(0) invert(1);
+}
+
+/* Emojis teñidos con el color de su tarjeta vía drop-shadow */
+.card-emoji--c2 {
+    filter: drop-shadow(0 0 8px var(--c2)) drop-shadow(0 0 18px rgba(var(--c2-rgb), 0.5));
+    transition: filter 0.4s;
+}
+.card-emoji--c3 {
+    filter: drop-shadow(0 0 8px var(--c3)) drop-shadow(0 0 18px rgba(var(--c3-rgb), 0.5));
+    transition: filter 0.4s;
+}
+
+/* ── [PLAY GAME] label ────────────────────────────── */
+.card-play-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s, text-shadow 0.2s, letter-spacing 0.2s;
+}
+
+.game-card--c1:hover .card-play-label {
+    color: var(--c1);
+    text-shadow: 0 0 8px var(--c1), 0 0 18px var(--c1), 0 0 30px rgba(var(--c1-rgb), 0.5);
+    letter-spacing: 2px;
+}
+.game-card--c2:hover .card-play-label {
+    color: var(--c2);
+    text-shadow: 0 0 8px var(--c2), 0 0 18px var(--c2), 0 0 30px rgba(var(--c2-rgb), 0.5);
+    letter-spacing: 2px;
+}
+.game-card--c3:hover .card-play-label {
+    color: var(--c3);
+    text-shadow: 0 0 8px var(--c3), 0 0 18px var(--c3), 0 0 30px rgba(var(--c3-rgb), 0.5);
+    letter-spacing: 2px;
+}
+
+/* ── Info de la tarjeta ───────────────────────────── */
+.card-info {
+    padding: 14px 16px;
+    flex: 1;
+}
+
+.card-number {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    margin-bottom: 6px;
+}
+
+.card-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.card-description {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.4;
+}
+
+/* ── Parte inferior de la tarjeta ─────────────────── */
+.card-bottom {
+    padding: 10px 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-credits {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+}
+
+.card-difficulty {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ── Puntos de dificultad ─────────────────────────── */
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.dot--off { background-color: rgba(255,255,255,0.15); }
+.dot--c1  { background-color: var(--c1); box-shadow: 0 0 4px rgba(var(--c1-rgb), 0.8); transition: background-color 0.4s, box-shadow 0.4s; }
+.dot--c2  { background-color: var(--c2); box-shadow: 0 0 4px rgba(var(--c2-rgb), 0.8); transition: background-color 0.4s, box-shadow 0.4s; }
+.dot--c3  { background-color: var(--c3); box-shadow: 0 0 4px rgba(var(--c3-rgb), 0.8); transition: background-color 0.4s, box-shadow 0.4s; }
+.dot--c4  { background-color: var(--c4); box-shadow: 0 0 4px rgba(var(--c4-rgb), 0.8); transition: background-color 0.4s, box-shadow 0.4s; }
+
+/* ── Footer ───────────────────────────────────────── */
+.site-footer {
+    margin-top: 40px;
+    padding: 16px 0;
+    border-top: 2px solid rgba(0,255,204,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-score {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    line-height: 1.8;
+}
+
+.score-label { color: rgba(255,255,255,0.4); }
+.score-value { color: #ff00cc; display: block; }
+
+.footer-company {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ── Pantalla de juego ────────────────────────────── */
+.pantalla-juego {
+    padding: 20px 0;
+}
+
+.btn-volver {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    border: 2px solid rgba(255,255,255,0.2);
+    padding: 10px 16px;
+    cursor: pointer;
+    margin-bottom: 24px;
+    transition: color 0.1s, border-color 0.1s;
+}
+
+.btn-volver:hover {
+    color: #00ffcc;
+    border-color: #00ffcc;
+    text-shadow: 0 0 8px #00ffcc, 0 0 16px rgba(0,255,204,0.4);
+    box-shadow: 0 0 12px rgba(0, 255, 204, 0.3);
+}
+
+.juego-titulo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.juego-titulo--c1 {
+    color: var(--c1);
+    text-shadow: 3px 3px 0 #888800, 0 0 16px var(--c1), 0 0 32px rgba(var(--c1-rgb), 0.4);
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+/* ── Tic Tac Toe ──────────────────────────────────── */
+.ttt-turno {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+.ttt-tablero {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 6px;
+    margin: 0 auto 20px;
+    width: fit-content;
+}
+
+.ttt-celda {
+    width: 90px;
+    height: 90px;
+    background-color: #15002a;
+    border: 3px solid var(--c1);
+    color: var(--c1);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background-color 0.1s, border-color 0.4s, color 0.4s;
+}
+
+.ttt-celda:hover:not(:disabled) {
+    background-color: #220044;
+    box-shadow: inset 0 0 18px rgba(var(--c1-rgb), 0.2), 0 0 12px rgba(var(--c1-rgb), 0.3);
+}
+
+.ttt-celda:disabled { cursor: default; }
+
+.ttt-celda--x { color: var(--c1); }
+.ttt-celda--o { color: var(--c3); }
+
+.ttt-mensaje {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px;
+    text-align: center;
+    min-height: 24px;
+    color: var(--c2);
+    margin-bottom: 16px;
+    text-shadow: 0 0 10px var(--c2), 0 0 24px rgba(var(--c2-rgb), 0.5);
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+.btn-reiniciar {
+    display: block;
+    margin: 0 auto;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background-color: var(--c3);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: background-color 0.15s, box-shadow 0.15s, background-color 0.4s;
+    box-shadow: 0 0 12px rgba(var(--c3-rgb), 0.5), 0 0 24px rgba(var(--c3-rgb), 0.3);
+    text-shadow: 0 0 6px rgba(255,255,255,0.5);
+}
+
+.btn-reiniciar:hover {
+    filter: brightness(0.85);
+    box-shadow: 0 0 20px rgba(var(--c3-rgb), 0.8), 0 0 40px rgba(var(--c3-rgb), 0.4);
+}
+
+/* ── Indicador de paleta (tecla R) ────────────────── */
+.palette-indicator {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(0, 0, 0, 0.92);
+    border: 2px solid var(--c1);
+    box-shadow: 0 0 16px rgba(var(--c1-rgb), 0.5), 0 0 40px rgba(var(--c1-rgb), 0.2);
+    padding: 12px 18px;
+    font-family: 'Press Start 2P', monospace;
+    text-align: center;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.25s, transform 0.25s, border-color 0.4s, box-shadow 0.4s;
+    min-width: 160px;
+}
+
+.palette-indicator.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.palette-indicator-hint {
+    font-size: 7px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+.palette-indicator-nombre {
+    font-size: 10px;
+    color: var(--c1);
+    text-shadow: 0 0 8px var(--c1);
+    margin-bottom: 4px;
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+.palette-indicator-num {
+    font-size: 7px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+}

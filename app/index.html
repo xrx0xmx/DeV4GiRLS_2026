@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Mini Juegos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Efecto scanlines CRT de fondo -->
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+
+        <!-- Header -->
+        <header class="site-header">
+
+            <!-- Marquee de decoracion estilo arcade -->
+            <div class="arcade-marquee" role="presentation">
+                <div class="marquee-track" aria-hidden="true">
+                    <span>★ INSERT COIN ★</span>
+                    <span>★ PRESS START ★</span>
+                    <span>★ HIGH SCORE ★</span>
+                    <span>★ PLAYER 1 ★</span>
+                    <span>★ INSERT COIN ★</span>
+                    <span>★ PRESS START ★</span>
+                    <span>★ HIGH SCORE ★</span>
+                    <span>★ PLAYER 1 ★</span>
+                </div>
+            </div>
+
+            <!-- Titulo principal -->
+            <div class="title-wrapper">
+                <div class="title-glow" aria-hidden="true">MINI MINI JUEGOS</div>
+                <h1 class="site-title">MINI MINI<br>JUEGOS</h1>
+            </div>
+
+            <p class="site-subtitle">&gt; ELIGE TU JUEGO Y PRESIONA CLICK</p>
+
+        </header>
+
+        <!-- Grid de juegos -->
+        <main>
+            <div class="game-grid">
+
+                <!-- Juego 1: Tic Tac Toe -->
+                <div class="game-card game-card--c1" data-juego="tic-tac-toe">
+                    <div class="card-screen">
+                        <div class="card-emoji ttt-card-emoji" aria-hidden="true">
+                            <span class="ttt-emoji-main">⭕</span>
+                            <span class="ttt-emoji-sub">❌</span>
+                        </div>
+                        <div class="card-play-label" aria-hidden="true">[ PLAY GAME ]</div>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-number">01</div>
+                        <h2 class="card-title">TIC TAC TOE</h2>
+                        <p class="card-description">Tres en raya clasico. Conecta tus simbolos y gana.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <span class="card-credits">2P</span>
+                        <span class="card-difficulty">
+                            <span class="dot dot--off"></span>
+                            <span class="dot dot--off"></span>
+                            <span class="dot dot--c1"></span>
+                            <span class="dot dot--c1"></span>
+                            <span class="dot dot--c1"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Juego 2: Hangman (Ahorcado) -->
+                <div class="game-card game-card--c2">
+                    <div class="card-screen">
+                        <div class="card-emoji card-emoji--c2" aria-hidden="true">🔤</div>
+                        <div class="card-play-label" aria-hidden="true">[ PLAY GAME ]</div>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-number">02</div>
+                        <h2 class="card-title">AHORCADO</h2>
+                        <p class="card-description">Adivina la palabra letra a letra. Sin errores!</p>
+                    </div>
+                    <div class="card-bottom">
+                        <span class="card-credits">1P</span>
+                        <span class="card-difficulty">
+                            <span class="dot dot--off"></span>
+                            <span class="dot dot--off"></span>
+                            <span class="dot dot--off"></span>
+                            <span class="dot dot--c2"></span>
+                            <span class="dot dot--c2"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Juego 3: High Card Low Card -->
+                <div class="game-card game-card--c3">
+                    <div class="card-screen">
+                        <div class="card-emoji card-emoji--c3" aria-hidden="true">🃏</div>
+                        <div class="card-play-label" aria-hidden="true">[ PLAY GAME ]</div>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-number">03</div>
+                        <h2 class="card-title">HIGH LOW CARD</h2>
+                        <p class="card-description">Alta o baja? Adivina el valor de la carta.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <span class="card-credits">1P</span>
+                        <span class="card-difficulty">
+                            <span class="dot dot--off"></span>
+                            <span class="dot dot--c3"></span>
+                            <span class="dot dot--c3"></span>
+                            <span class="dot dot--c3"></span>
+                            <span class="dot dot--c3"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Juego 4: Simon -->
+                <div class="game-card game-card--c4">
+                    <div class="card-screen">
+                        <div class="simon-preview" aria-hidden="true">
+                            <div class="simon-q simon-q--c1"></div>
+                            <div class="simon-q simon-q--c2"></div>
+                            <div class="simon-q simon-q--c3"></div>
+                            <div class="simon-q simon-q--c4"></div>
+                        </div>
+                        <div class="card-play-label" aria-hidden="true">[ PLAY GAME ]</div>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-number">04</div>
+                        <h2 class="card-title">SIMON</h2>
+                        <p class="card-description">Repite la secuencia de colores. Sin fallar!</p>
+                    </div>
+                    <div class="card-bottom">
+                        <span class="card-credits">1P</span>
+                        <span class="card-difficulty">
+                            <span class="dot dot--off"></span>
+                            <span class="dot dot--off"></span>
+                            <span class="dot dot--c4"></span>
+                            <span class="dot dot--c4"></span>
+                            <span class="dot dot--c4"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Agregar más juegos aquí -->
+                <!-- Ejemplo:
+                <div class="game-card game-card--green">
+                    <div class="card-screen">
+                        <div class="card-emoji" aria-hidden="true">🎯</div>
+                        <div class="card-play-label" aria-hidden="true">[ PLAY GAME ]</div>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-number">04</div>
+                        <h2 class="card-title">NOMBRE JUEGO</h2>
+                        <p class="card-description">Descripcion corta del juego nuevo.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <span class="card-credits">XP</span>
+                        <span class="card-difficulty">⬛⬛⬛⬛⬜</span>
+                    </div>
+                </div>
+                -->
+
+            </div>
+            <!-- Pantalla: Tic Tac Toe -->
+            <div id="pantalla-tic-tac-toe" class="pantalla-juego" style="display: none;">
+                <button class="btn-volver">&larr; VOLVER</button>
+                <h2 class="juego-titulo juego-titulo--c1">TIC TAC TOE</h2>
+                <div class="ttt-turno">TURNO: <span id="ttt-turno-texto">X</span></div>
+                <div class="ttt-tablero">
+                    <button class="ttt-celda" data-celda="0"></button>
+                    <button class="ttt-celda" data-celda="1"></button>
+                    <button class="ttt-celda" data-celda="2"></button>
+                    <button class="ttt-celda" data-celda="3"></button>
+                    <button class="ttt-celda" data-celda="4"></button>
+                    <button class="ttt-celda" data-celda="5"></button>
+                    <button class="ttt-celda" data-celda="6"></button>
+                    <button class="ttt-celda" data-celda="7"></button>
+                    <button class="ttt-celda" data-celda="8"></button>
+                </div>
+                <div id="ttt-mensaje" class="ttt-mensaje"></div>
+                <button id="ttt-reiniciar" class="btn-reiniciar" style="display: none;">REINICIAR</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-score">
+                <span class="score-label">HECHO CON ❤ PARA</span>
+                <span class="score-value">DeV4GiRLS 2026</span>
+            </div>
+            <div class="footer-company">
+                <span class="footer-company-icon" aria-hidden="true">🐕</span>
+                <span class="footer-company-name">DASHUND DEVELOPMENT</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Indicador de paleta (aparece al pulsar R) -->
+    <div class="palette-indicator" id="palette-indicator" aria-live="polite">
+        <div class="palette-indicator-hint">[R] CAMBIAR PALETA</div>
+        <div class="palette-indicator-nombre" id="pi-nombre">ORIGINAL</div>
+        <div class="palette-indicator-num" id="pi-num">1 / 10</div>
+    </div>
+
+    <script src="tic-tac-toe.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
