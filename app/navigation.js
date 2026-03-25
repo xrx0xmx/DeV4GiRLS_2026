@@ -1,9 +1,11 @@
 function initNavigation(options) {
     var onStartTicTacToe = options.onStartTicTacToe;
+    var onStartAhorcado = options.onStartAhorcado;
     var onStartSimon = options.onStartSimon;
     var onBack = options.onBack;
 
     document.querySelector('[data-juego="tic-tac-toe"]').addEventListener('click', onStartTicTacToe);
+    document.querySelector('[data-juego="ahorcado"]').addEventListener('click', onStartAhorcado);
 
     document.querySelectorAll('.btn-volver').forEach(function (btn) {
         btn.addEventListener('click', onBack);

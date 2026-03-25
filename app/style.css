@@ -450,6 +450,12 @@ body {
     transition: color 0.4s, text-shadow 0.4s;
 }
 
+.juego-titulo--c2 {
+    color: var(--c2);
+    text-shadow: 3px 3px 0 #004433, 0 0 16px var(--c2), 0 0 32px rgba(var(--c2-rgb), 0.4);
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
 /* ── Tic Tac Toe ──────────────────────────────────── */
 .ttt-turno {
     font-family: 'Press Start 2P', monospace;
@@ -520,6 +526,267 @@ body {
 .btn-reiniciar:hover {
     filter: brightness(0.85);
     box-shadow: 0 0 20px rgba(var(--c3-rgb), 0.8), 0 0 40px rgba(var(--c3-rgb), 0.4);
+}
+
+.btn-reiniciar--c2 {
+    background-color: var(--c2);
+    box-shadow: 0 0 12px rgba(var(--c2-rgb), 0.5), 0 0 24px rgba(var(--c2-rgb), 0.3);
+}
+
+.btn-reiniciar--c2:hover {
+    box-shadow: 0 0 20px rgba(var(--c2-rgb), 0.8), 0 0 40px rgba(var(--c2-rgb), 0.4);
+}
+
+/* ── Ahorcado ─────────────────────────────────────── */
+.ahorcado-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.ahorcado-stage {
+    position: relative;
+    width: 260px;
+    height: 340px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(0, 255, 204, 0.06), rgba(0, 0, 0, 0));
+    border: 1px solid rgba(var(--c2-rgb), 0.15);
+    box-shadow: inset 0 0 24px rgba(var(--c2-rgb), 0.08), 0 0 24px rgba(var(--c2-rgb), 0.12);
+}
+
+.ahorcado-gallows,
+.ahorcado-figure-part {
+    position: absolute;
+    background: var(--c2);
+    box-shadow: 0 0 10px rgba(var(--c2-rgb), 0.45);
+    transition: opacity 0.15s, background-color 0.4s, box-shadow 0.4s;
+}
+
+.ahorcado-gallows--base {
+    width: 130px;
+    height: 6px;
+    left: 40px;
+    bottom: 26px;
+}
+
+.ahorcado-gallows--pole {
+    width: 6px;
+    height: 260px;
+    left: 72px;
+    bottom: 26px;
+}
+
+.ahorcado-gallows--beam {
+    width: 120px;
+    height: 6px;
+    left: 72px;
+    top: 36px;
+}
+
+.ahorcado-gallows--rope {
+    width: 4px;
+    height: 40px;
+    left: 188px;
+    top: 42px;
+}
+
+.ahorcado-figure-part {
+    background: transparent;
+    box-shadow: none;
+    visibility: hidden;
+}
+
+.ahorcado-figure-part--head {
+    width: 42px;
+    height: 42px;
+    border: 5px solid var(--c2);
+    border-radius: 50%;
+    left: 168px;
+    top: 72px;
+}
+
+.ahorcado-figure-part--body {
+    width: 6px;
+    height: 74px;
+    left: 186px;
+    top: 114px;
+    background: var(--c2);
+}
+
+.ahorcado-figure-part--arm-left {
+    width: 56px;
+    height: 6px;
+    left: 136px;
+    top: 136px;
+    transform: rotate(32deg);
+    transform-origin: right center;
+    background: var(--c2);
+}
+
+.ahorcado-figure-part--arm-right {
+    width: 56px;
+    height: 6px;
+    left: 188px;
+    top: 136px;
+    transform: rotate(-32deg);
+    transform-origin: left center;
+    background: var(--c2);
+}
+
+.ahorcado-figure-part--leg-left {
+    width: 56px;
+    height: 6px;
+    left: 138px;
+    top: 208px;
+    transform: rotate(-38deg);
+    transform-origin: right center;
+    background: var(--c2);
+}
+
+.ahorcado-figure-part--leg-right {
+    width: 56px;
+    height: 6px;
+    left: 188px;
+    top: 208px;
+    transform: rotate(38deg);
+    transform-origin: left center;
+    background: var(--c2);
+}
+
+.ahorcado-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ahorcado-hint,
+.ahorcado-progress,
+.ahorcado-wrong-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+.ahorcado-hint,
+.ahorcado-progress {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.ahorcado-hint span,
+.ahorcado-progress span {
+    color: var(--c2);
+    text-shadow: 0 0 8px var(--c2);
+}
+
+.ahorcado-word {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 6px 0;
+}
+
+.ahorcado-letter {
+    min-width: 30px;
+    height: 42px;
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 18px;
+    color: var(--c2);
+    border-bottom: 3px solid rgba(var(--c2-rgb), 0.35);
+    text-shadow: 0 0 10px rgba(var(--c2-rgb), 0.35);
+}
+
+.ahorcado-letter--space {
+    min-width: 18px;
+    border-bottom: none;
+}
+
+.ahorcado-letter--revealed {
+    border-bottom-color: var(--c2);
+}
+
+.ahorcado-letter--win {
+    color: var(--c1);
+    border-bottom-color: var(--c1);
+    text-shadow: 0 0 10px rgba(var(--c1-rgb), 0.45);
+}
+
+.ahorcado-letter--lose {
+    color: var(--c3);
+    border-bottom-color: var(--c3);
+    text-shadow: 0 0 10px rgba(var(--c3-rgb), 0.45);
+}
+
+.ahorcado-wrong-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ahorcado-wrong-label {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.ahorcado-wrong {
+    min-height: 24px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--c3);
+    text-shadow: 0 0 8px rgba(var(--c3-rgb), 0.45);
+    line-height: 1.7;
+}
+
+.ahorcado-mensaje {
+    min-height: 24px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--c2);
+    text-shadow: 0 0 10px rgba(var(--c2-rgb), 0.45);
+}
+
+.ahorcado-keyboard {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.ahorcado-key {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    padding: 12px 0;
+    border: 2px solid rgba(var(--c2-rgb), 0.2);
+    background: rgba(0, 0, 0, 0.35);
+    color: rgba(255, 255, 255, 0.82);
+    cursor: pointer;
+    transition: transform 0.08s, border-color 0.12s, background-color 0.12s, color 0.12s, box-shadow 0.12s;
+}
+
+.ahorcado-key:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: rgba(var(--c2-rgb), 0.55);
+    box-shadow: 0 0 12px rgba(var(--c2-rgb), 0.25);
+}
+
+.ahorcado-key:disabled {
+    cursor: default;
+    opacity: 0.55;
+}
+
+.ahorcado-key--correct {
+    background: rgba(var(--c2-rgb), 0.22);
+    color: var(--c2);
+    border-color: rgba(var(--c2-rgb), 0.55);
+    box-shadow: 0 0 12px rgba(var(--c2-rgb), 0.25);
+}
+
+.ahorcado-key--wrong {
+    background: rgba(var(--c3-rgb), 0.18);
+    color: var(--c3);
+    border-color: rgba(var(--c3-rgb), 0.55);
+    box-shadow: 0 0 12px rgba(var(--c3-rgb), 0.2);
 }
 
 /* ── Juego Simon ──────────────────────────────────── */
@@ -644,4 +911,168 @@ body {
     font-size: 7px;
     color: rgba(255,255,255,0.3);
     letter-spacing: 1px;
+}
+
+/* ── Responsive móvil ─────────────────────────────── */
+@media (max-width: 720px) {
+    .main-container {
+        padding: 0 12px 28px;
+    }
+
+    .site-header {
+        padding: 14px 0 20px;
+    }
+
+    .title-glow,
+    .site-title {
+        font-size: clamp(1.55rem, 8vw, 2.1rem);
+    }
+
+    .site-subtitle {
+        font-size: 1.05rem;
+        letter-spacing: 1px;
+    }
+
+    .game-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .game-card {
+        width: 100%;
+    }
+
+    .card-screen {
+        padding: 16px;
+    }
+
+    .card-emoji {
+        font-size: 2rem;
+    }
+
+    .card-play-label {
+        font-size: 8px;
+    }
+
+    .site-footer {
+        margin-top: 28px;
+    }
+
+    .pantalla-juego {
+        padding: 12px 0 8px;
+    }
+
+    .btn-volver {
+        margin-bottom: 16px;
+        padding: 8px 12px;
+        font-size: 8px;
+    }
+
+    .juego-titulo {
+        font-size: 1rem;
+        margin-bottom: 14px;
+    }
+
+    .btn-reiniciar {
+        padding: 10px 18px;
+        font-size: 8px;
+    }
+
+    .ttt-turno,
+    .simon-nivel-wrap,
+    .ahorcado-hint,
+    .ahorcado-progress,
+    .ahorcado-wrong-label {
+        font-size: 8px;
+    }
+
+    .ttt-tablero {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 4px;
+        width: min(92vw, 246px);
+        max-width: 100%;
+    }
+
+    .ttt-celda {
+        width: auto;
+        height: clamp(66px, 21vw, 82px);
+        font-size: 1.45rem;
+    }
+
+    .ttt-mensaje {
+        font-size: 10px;
+        min-height: 20px;
+    }
+
+    .simon-tablero {
+        width: min(92vw, 260px);
+        gap: 8px;
+    }
+
+    .simon-boton {
+        height: clamp(84px, 28vw, 112px);
+        border-radius: 10px;
+    }
+
+    .simon-mensaje {
+        font-size: 9px;
+        min-height: 20px;
+    }
+
+    .ahorcado-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .ahorcado-stage {
+        width: min(92vw, 260px);
+        height: clamp(250px, 82vw, 320px);
+    }
+
+    .ahorcado-panel {
+        gap: 12px;
+    }
+
+    .ahorcado-word {
+        gap: 6px;
+    }
+
+    .ahorcado-letter {
+        min-width: 24px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .ahorcado-letter--space {
+        min-width: 14px;
+    }
+
+    .ahorcado-mensaje,
+    .ahorcado-wrong {
+        font-size: 8px;
+    }
+
+    .ahorcado-keyboard {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .ahorcado-key {
+        padding: 9px 0;
+        font-size: 8px;
+    }
+
+    #btn-settings {
+        right: 1rem;
+        bottom: 1rem;
+        width: 44px;
+        height: 44px;
+    }
+
+    .palette-indicator {
+        right: 12px;
+        bottom: 4.2rem;
+        min-width: 140px;
+        padding: 10px 14px;
+    }
 }

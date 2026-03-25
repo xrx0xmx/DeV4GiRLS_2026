@@ -79,7 +79,7 @@
                 </div>
 
                 <!-- Juego 2: Hangman (Ahorcado) -->
-                <div class="game-card game-card--c2">
+                <div class="game-card game-card--c2" data-juego="ahorcado">
                     <div class="card-screen">
                         <div class="card-emoji card-emoji--c2" aria-hidden="true">🔤</div>
                         <div class="card-play-label" aria-hidden="true">[ PLAY GAME ]</div>
@@ -174,6 +174,37 @@
             </div>
             <!-- Pantalla: Tic Tac Toe -->
             <!-- Pantalla: Simon -->
+            <div id="pantalla-ahorcado" class="pantalla-juego" style="display: none;">
+                <button class="btn-volver">&larr; VOLVER</button>
+                <h2 class="juego-titulo juego-titulo--c2">AHORCADO</h2>
+                <div class="ahorcado-layout">
+                    <div class="ahorcado-stage" aria-hidden="true">
+                        <div class="ahorcado-gallows ahorcado-gallows--base"></div>
+                        <div class="ahorcado-gallows ahorcado-gallows--pole"></div>
+                        <div class="ahorcado-gallows ahorcado-gallows--beam"></div>
+                        <div class="ahorcado-gallows ahorcado-gallows--rope"></div>
+                        <div class="ahorcado-figure-part ahorcado-figure-part--head"></div>
+                        <div class="ahorcado-figure-part ahorcado-figure-part--body"></div>
+                        <div class="ahorcado-figure-part ahorcado-figure-part--arm-left"></div>
+                        <div class="ahorcado-figure-part ahorcado-figure-part--arm-right"></div>
+                        <div class="ahorcado-figure-part ahorcado-figure-part--leg-left"></div>
+                        <div class="ahorcado-figure-part ahorcado-figure-part--leg-right"></div>
+                    </div>
+                    <div class="ahorcado-panel">
+                        <div class="ahorcado-hint">PISTA: <span id="ahorcado-pista">---</span></div>
+                        <div class="ahorcado-progress">ERRORES: <span id="ahorcado-progress">0 / 6</span></div>
+                        <div id="ahorcado-word" class="ahorcado-word" aria-label="Palabra oculta"></div>
+                        <div class="ahorcado-wrong-wrap">
+                            <span class="ahorcado-wrong-label">LETRAS FALLADAS</span>
+                            <div id="ahorcado-wrong" class="ahorcado-wrong">NINGUNA</div>
+                        </div>
+                        <div id="ahorcado-mensaje" class="ahorcado-mensaje">PULSA UNA LETRA</div>
+                        <div id="ahorcado-keyboard" class="ahorcado-keyboard"></div>
+                        <button id="ahorcado-reiniciar" class="btn-reiniciar btn-reiniciar--c2">NUEVA PALABRA</button>
+                    </div>
+                </div>
+            </div>
+
             <div id="pantalla-simon" class="pantalla-juego" style="display: none;">
                 <button class="btn-volver">&larr; VOLVER</button>
                 <h2 class="juego-titulo juego-titulo--c4">SIMON</h2>
@@ -248,6 +279,7 @@
 
     <script src="palettes.js"></script>
     <script src="tic-tac-toe.js"></script>
+    <script src="ahorcado.js"></script>
     <script src="simon.js"></script>
     <script src="settings.js"></script>
     <script src="navigation.js"></script>

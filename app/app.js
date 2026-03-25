@@ -63,6 +63,7 @@ function cambiarPantalla(nuevaPantalla, juego) {
 function actualizarVista() {
     var header = document.querySelector('.site-header');
     var menu = document.querySelector('.game-grid');
+    var pantallaAhorcado = document.getElementById('pantalla-ahorcado');
     var pantallaTTT = document.getElementById('pantalla-tic-tac-toe');
     var pantallaSimon = document.getElementById('pantalla-simon');
 
@@ -70,6 +71,7 @@ function actualizarVista() {
 
     header.style.display = esMenu ? '' : 'none';
     menu.style.display = esMenu ? '' : 'none';
+    pantallaAhorcado.style.display = (!esMenu && estado.juegoActivo === 'ahorcado') ? '' : 'none';
     pantallaTTT.style.display = (!esMenu && estado.juegoActivo === 'tic-tac-toe') ? '' : 'none';
     pantallaSimon.style.display = (!esMenu && estado.juegoActivo === 'simon') ? '' : 'none';
 }
@@ -97,6 +99,10 @@ function iniciar() {
             TicTacToe.reiniciar();
             cambiarPantalla('juego', 'tic-tac-toe');
         },
+        onStartAhorcado: function () {
+            Ahorcado.reiniciar();
+            cambiarPantalla('juego', 'ahorcado');
+        },
         onStartSimon: function () {
             Simon.reiniciar();
             cambiarPantalla('juego', 'simon');
@@ -120,6 +126,7 @@ function iniciar() {
         }
     });
 
+    Ahorcado.iniciar();
     TicTacToe.iniciar();
     Simon.iniciar();
     aplicarPaleta(PALETAS[indicePaleta]);
