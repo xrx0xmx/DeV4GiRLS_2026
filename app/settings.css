@@ -1,0 +1,135 @@
+/* ── FAB Settings ─────────────────────────────────── */
+#btn-settings {
+    position: fixed;
+    bottom: 2rem;
+    right: 3rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid var(--c1);
+    color: var(--c1);
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(var(--c1-rgb), 0.4), 0 0 24px rgba(var(--c1-rgb), 0.2);
+    transition: border-color 0.4s, color 0.4s, box-shadow 0.4s, transform 0.1s;
+}
+
+#btn-settings:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(var(--c1-rgb), 0.7), 0 0 40px rgba(var(--c1-rgb), 0.4);
+}
+
+#btn-settings:active {
+    transform: scale(0.95);
+}
+
+/* ── Modal overlay ────────────────────────────────── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    animation: modalFadeIn 0.15s ease;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ── Modal panel ──────────────────────────────────── */
+.modal-panel {
+    background: #0a0014;
+    border: 2px solid var(--c1);
+    box-shadow: 0 0 30px rgba(var(--c1-rgb), 0.3), 0 0 60px rgba(var(--c1-rgb), 0.1);
+    padding: 2rem;
+    min-width: 280px;
+    max-width: min(90vw, 420px);
+    position: relative;
+    animation: modalSlideIn 0.2s ease;
+    transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+@keyframes modalSlideIn {
+    from { transform: scale(0.92); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    padding: 4px 6px;
+    transition: color 0.1s;
+}
+
+.modal-close:hover {
+    color: var(--c1);
+    text-shadow: 0 0 8px var(--c1);
+}
+
+.modal-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    color: var(--c1);
+    text-shadow: 0 0 12px var(--c1), 0 0 24px rgba(var(--c1-rgb), 0.4);
+    margin-bottom: 1.5rem;
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+.modal-section {
+    margin-bottom: 1rem;
+}
+
+.modal-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+/* ── Palette picker swatches ──────────────────────── */
+.palette-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.palette-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: transform 0.1s, border-color 0.1s, box-shadow 0.1s;
+}
+
+.palette-swatch:hover {
+    transform: scale(1.2);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.palette-swatch.activo {
+    border-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.4);
+    transform: scale(1.15);
+}

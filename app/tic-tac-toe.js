@@ -1,5 +1,3 @@
-'use strict';
-
 var TicTacToe = (function () {
 
     var TAMANO_TABLERO = 9;
@@ -134,4 +132,4 @@ var TicTacToe = (function () {
         reiniciar: reiniciar
     };
 
-})();
+}());

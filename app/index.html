@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito:wght@400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings.css">
 </head>
 
 <body>
@@ -124,7 +125,7 @@
                 </div>
 
                 <!-- Juego 4: Simon -->
-                <div class="game-card game-card--c4">
+                <div class="game-card game-card--c4" data-juego="simon">
                     <div class="card-screen">
                         <div class="simon-preview" aria-hidden="true">
                             <div class="simon-q simon-q--c1"></div>
@@ -172,6 +173,23 @@
 
             </div>
             <!-- Pantalla: Tic Tac Toe -->
+            <!-- Pantalla: Simon -->
+            <div id="pantalla-simon" class="pantalla-juego" style="display: none;">
+                <button class="btn-volver">&larr; VOLVER</button>
+                <h2 class="juego-titulo juego-titulo--c4">SIMON</h2>
+                <div class="simon-nivel-wrap">
+                    NIVEL: <span id="simon-nivel">0</span>
+                </div>
+                <div class="simon-tablero">
+                    <button class="simon-boton simon-boton--c1" aria-label="Color 1"></button>
+                    <button class="simon-boton simon-boton--c2" aria-label="Color 2"></button>
+                    <button class="simon-boton simon-boton--c3" aria-label="Color 3"></button>
+                    <button class="simon-boton simon-boton--c4" aria-label="Color 4"></button>
+                </div>
+                <div id="simon-mensaje" class="simon-mensaje"></div>
+                <button id="simon-start" class="btn-reiniciar">START</button>
+            </div>
+
             <div id="pantalla-tic-tac-toe" class="pantalla-juego" style="display: none;">
                 <button class="btn-volver">&larr; VOLVER</button>
                 <h2 class="juego-titulo juego-titulo--c1">TIC TAC TOE</h2>
@@ -213,8 +231,27 @@
         <div class="palette-indicator-num" id="pi-num">1 / 10</div>
     </div>
 
+    <!-- FAB Settings -->
+    <button id="btn-settings" aria-label="Configuración">⚙</button>
+
+    <!-- Modal Settings -->
+    <div id="modal-settings" class="modal-overlay" hidden>
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Configuración">
+            <button id="modal-close" class="modal-close" aria-label="Cerrar">✕</button>
+            <h2 class="modal-title">SETTINGS</h2>
+            <div class="modal-section">
+                <p class="modal-label">COLOR PALETTE</p>
+                <div id="palette-picker" class="palette-picker"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="palettes.js"></script>
     <script src="tic-tac-toe.js"></script>
-    <script src="script.js"></script>
+    <script src="simon.js"></script>
+    <script src="settings.js"></script>
+    <script src="navigation.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

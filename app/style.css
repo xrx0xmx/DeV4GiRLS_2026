@@ -522,10 +522,89 @@ body {
     box-shadow: 0 0 20px rgba(var(--c3-rgb), 0.8), 0 0 40px rgba(var(--c3-rgb), 0.4);
 }
 
+/* ── Juego Simon ──────────────────────────────────── */
+.simon-nivel-wrap {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    text-align: center;
+    margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#simon-nivel {
+    color: var(--c4);
+    text-shadow: 0 0 8px var(--c4);
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+.simon-tablero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 280px;
+    margin: 0 auto 24px;
+}
+
+.simon-boton {
+    height: 120px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.15s, box-shadow 0.15s, transform 0.08s, background-color 0.4s;
+}
+
+.simon-boton:hover { opacity: 0.65; }
+.simon-boton:active { transform: scale(0.96); }
+
+.simon-boton--c1 { background-color: var(--c1); }
+.simon-boton--c2 { background-color: var(--c2); }
+.simon-boton--c3 { background-color: var(--c3); }
+.simon-boton--c4 { background-color: var(--c4); }
+
+.simon-boton--c1.simon-boton--activo {
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(var(--c1-rgb), 0.9), 0 0 60px rgba(var(--c1-rgb), 0.5);
+}
+.simon-boton--c2.simon-boton--activo {
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(var(--c2-rgb), 0.9), 0 0 60px rgba(var(--c2-rgb), 0.5);
+}
+.simon-boton--c3.simon-boton--activo {
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(var(--c3-rgb), 0.9), 0 0 60px rgba(var(--c3-rgb), 0.5);
+}
+.simon-boton--c4.simon-boton--activo {
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(var(--c4-rgb), 0.9), 0 0 60px rgba(var(--c4-rgb), 0.5);
+}
+
+.simon-mensaje {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    text-align: center;
+    min-height: 24px;
+    color: var(--c4);
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--c4), 0 0 24px rgba(var(--c4-rgb), 0.5);
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
+.simon-mensaje--error {
+    color: var(--c3);
+    text-shadow: 0 0 10px var(--c3), 0 0 24px rgba(var(--c3-rgb), 0.5);
+}
+
+.juego-titulo--c4 {
+    color: var(--c4);
+    text-shadow: 3px 3px 0 #004488, 0 0 16px var(--c4), 0 0 32px rgba(var(--c4-rgb), 0.4);
+    transition: color 0.4s, text-shadow 0.4s;
+}
+
 /* ── Indicador de paleta (tecla R) ────────────────── */
 .palette-indicator {
     position: fixed;
-    bottom: 24px;
+    bottom: 5rem;
     right: 24px;
     background: rgba(0, 0, 0, 0.92);
     border: 2px solid var(--c1);
