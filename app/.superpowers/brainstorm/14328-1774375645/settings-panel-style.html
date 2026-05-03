@@ -1,0 +1,234 @@
+<h2>¿Cómo aparece el panel de Settings?</h2>
+<p class="subtitle">Elige el estilo de apertura del panel</p>
+
+<style>
+  .arcade-wrap {
+    background: #0a0a0f;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 9px;
+    color: #fff;
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+  .aw-header {
+    background: #0a0a0f;
+    border-bottom: 2px solid #ff00ff;
+    padding: 6px 8px;
+    text-align: center;
+    color: #ffff00;
+    font-size: 7px;
+    letter-spacing: 2px;
+    position: relative;
+  }
+  .aw-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    padding: 7px;
+  }
+  .aw-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 3px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .aw-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #222;
+    padding: 4px;
+    text-align: center;
+    color: #444;
+    font-size: 6px;
+    background: #0a0a0f;
+  }
+  .fab {
+    position: absolute;
+    bottom: 22px;
+    right: 8px;
+    background: #ff00ff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    box-shadow: 0 0 8px #ff00ff88;
+    z-index: 5;
+  }
+  /* PANEL A — Drawer desde abajo */
+  .drawer-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 130px;
+    background: #111;
+    border-top: 2px solid #ff00ff;
+    padding: 8px;
+    z-index: 10;
+  }
+  .drawer-bottom .panel-title {
+    color: #ff00ff;
+    font-size: 8px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 0;
+    border-bottom: 1px solid #222;
+    font-size: 7px;
+    color: #aaa;
+  }
+  .setting-row .val { color: #ff00ff; font-size: 7px; }
+  /* PANEL B — Modal centrado */
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .modal-box {
+    background: #111;
+    border: 2px solid #ff00ff;
+    border-radius: 6px;
+    width: 160px;
+    padding: 10px;
+    box-shadow: 0 0 20px #ff00ff44;
+  }
+  .modal-box .panel-title {
+    color: #ff00ff;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  /* PANEL C — Drawer desde la derecha */
+  .drawer-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 120px;
+    background: #111;
+    border-left: 2px solid #ff00ff;
+    padding: 8px;
+    z-index: 10;
+  }
+  .drawer-right .panel-title {
+    color: #ff00ff;
+    font-size: 8px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+</style>
+
+<div class="cards">
+
+  <!-- OPTION A — Drawer desde abajo -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px 12px 8px; display:flex; justify-content:center;">
+      <div class="arcade-wrap">
+        <div class="aw-header">★ DEV4GIRLS ★</div>
+        <div class="aw-grid">
+          <div class="aw-card">⭕❌</div>
+          <div class="aw-card">🔤</div>
+          <div class="aw-card">🃏</div>
+          <div class="aw-card">🟦</div>
+        </div>
+        <div class="aw-footer">dev4girls 2026</div>
+        <!-- Drawer abierto desde abajo -->
+        <div class="drawer-bottom">
+          <div class="panel-title">⚙ SETTINGS</div>
+          <div class="setting-row"><span>🎨 PALETA</span><span class="val">NEON MIAMI ▶</span></div>
+          <div class="setting-row"><span>🔊 SONIDO</span><span class="val">ON</span></div>
+          <div class="setting-row"><span>🌐 IDIOMA</span><span class="val">ES</span></div>
+          <div class="setting-row"><span>ℹ️ ABOUT</span><span class="val">▶</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Sheet desde abajo</h3>
+      <p>Sube desde el fondo cubriendo parte del juego. Patrón mobile muy natural, fácil de cerrar con swipe.</p>
+    </div>
+  </div>
+
+  <!-- OPTION B — Modal centrado -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px 12px 8px; display:flex; justify-content:center;">
+      <div class="arcade-wrap">
+        <div class="aw-header">★ DEV4GIRLS ★</div>
+        <div class="aw-grid">
+          <div class="aw-card">⭕❌</div>
+          <div class="aw-card">🔤</div>
+          <div class="aw-card">🃏</div>
+          <div class="aw-card">🟦</div>
+        </div>
+        <div class="aw-footer">dev4girls 2026</div>
+        <!-- Modal overlay -->
+        <div class="modal-overlay">
+          <div class="modal-box">
+            <div class="panel-title">⚙ SETTINGS</div>
+            <div class="setting-row"><span>🎨 PALETA</span><span class="val">▶</span></div>
+            <div class="setting-row"><span>🔊 SONIDO</span><span class="val">ON</span></div>
+            <div class="setting-row"><span>🌐 IDIOMA</span><span class="val">ES</span></div>
+            <div class="setting-row"><span>ℹ️ ABOUT</span><span class="val">▶</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Modal centrado</h3>
+      <p>Popup centrado con fondo oscuro. Muy enfocado, bloquea el fondo para que no haya distracciones.</p>
+    </div>
+  </div>
+
+  <!-- OPTION C — Drawer derecha -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px 12px 8px; display:flex; justify-content:center;">
+      <div class="arcade-wrap">
+        <div class="aw-header">★ DEV4GIRLS ★</div>
+        <div class="aw-grid">
+          <div class="aw-card">⭕❌</div>
+          <div class="aw-card">🔤</div>
+          <div class="aw-card">🃏</div>
+          <div class="aw-card">🟦</div>
+        </div>
+        <div class="aw-footer">dev4girls 2026</div>
+        <!-- Drawer desde la derecha -->
+        <div class="drawer-right">
+          <div class="panel-title">⚙ SET</div>
+          <div class="setting-row"><span>🎨</span><span class="val">▶</span></div>
+          <div class="setting-row"><span>🔊</span><span class="val">ON</span></div>
+          <div class="setting-row"><span>🌐</span><span class="val">ES</span></div>
+          <div class="setting-row"><span>ℹ️</span><span class="val">▶</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Panel desde la derecha</h3>
+      <p>Slide desde la derecha, dejando el juego parcialmente visible. Patrón drawer clásico de apps móviles.</p>
+    </div>
+  </div>
+
+</div>

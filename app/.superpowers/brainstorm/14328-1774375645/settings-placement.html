@@ -1,0 +1,188 @@
+<h2>¿Dónde va el botón de Settings?</h2>
+<p class="subtitle">3 opciones para tu arcade app — haz clic para seleccionar</p>
+
+<style>
+  .arcade-mockup {
+    background: #0a0a0f;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 10px;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .mock-header {
+    background: #0a0a0f;
+    border-bottom: 2px solid #ff00ff;
+    padding: 8px 10px;
+    text-align: center;
+    color: #ffff00;
+    font-size: 9px;
+    letter-spacing: 2px;
+    position: relative;
+  }
+  .mock-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 8px;
+  }
+  .mock-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 8px;
+    color: #aaa;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+  .mock-card .card-num { color: #444; font-size: 7px; }
+  .mock-footer {
+    border-top: 1px solid #222;
+    padding: 5px 10px;
+    text-align: center;
+    color: #444;
+    font-size: 7px;
+  }
+  /* OPTION A — Header corner */
+  .gear-header {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    background: rgba(255,0,255,0.15);
+    border: 1px solid #ff00ff;
+    border-radius: 3px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    cursor: pointer;
+    color: #ff00ff;
+  }
+  /* OPTION B — FAB bottom-right */
+  .gear-fab {
+    position: absolute;
+    bottom: 28px;
+    right: 8px;
+    background: #ff00ff;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    box-shadow: 0 0 10px #ff00ff88;
+    cursor: pointer;
+    z-index: 10;
+  }
+  /* OPTION C — Footer link */
+  .gear-footer {
+    color: #ff00ff88;
+    cursor: pointer;
+    font-size: 8px;
+    text-decoration: underline;
+    margin-left: 8px;
+  }
+  .highlight-ring {
+    outline: 2px dashed #ffff00;
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  .badge {
+    display: inline-block;
+    background: #ffff00;
+    color: #000;
+    font-size: 8px;
+    font-weight: bold;
+    padding: 1px 5px;
+    border-radius: 2px;
+    margin-bottom: 4px;
+  }
+</style>
+
+<div class="cards">
+
+  <!-- OPTION A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px 12px 8px;">
+      <div class="badge">OPCIÓN A</div>
+      <div class="arcade-mockup">
+        <div class="mock-header">
+          ★ DEV4GIRLS ARCADE ★
+          <div class="gear-header highlight-ring">⚙</div>
+        </div>
+        <div class="mock-grid">
+          <div class="mock-card"><span>⭕❌</span><span class="card-num">01 TTT</span></div>
+          <div class="mock-card"><span>🔤</span><span class="card-num">02 AHO</span></div>
+          <div class="mock-card"><span>🃏</span><span class="card-num">03 HLC</span></div>
+          <div class="mock-card"><span>🟦</span><span class="card-num">04 SIM</span></div>
+        </div>
+        <div class="mock-footer">dev4girls 2026</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>⚙ Ícono en el Header</h3>
+      <p>Gear icon en la esquina superior derecha del marquee. Siempre visible, integrado al header. Patrón muy reconocido.</p>
+    </div>
+  </div>
+
+  <!-- OPTION B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px 12px 8px;">
+      <div class="badge">OPCIÓN B</div>
+      <div class="arcade-mockup" style="position:relative;">
+        <div class="mock-header">★ DEV4GIRLS ARCADE ★</div>
+        <div class="mock-grid">
+          <div class="mock-card"><span>⭕❌</span><span class="card-num">01 TTT</span></div>
+          <div class="mock-card"><span>🔤</span><span class="card-num">02 AHO</span></div>
+          <div class="mock-card"><span>🃏</span><span class="card-num">03 HLC</span></div>
+          <div class="mock-card"><span>🟦</span><span class="card-num">04 SIM</span></div>
+        </div>
+        <div class="mock-footer">dev4girls 2026</div>
+        <div class="gear-fab highlight-ring">⚙</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>⚙ FAB Flotante</h3>
+      <p>Botón circular flotante en la esquina inferior derecha. No interrumpe el grid, siempre accesible. Estilo moderno.</p>
+    </div>
+  </div>
+
+  <!-- OPTION C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px 12px 8px;">
+      <div class="badge">OPCIÓN C</div>
+      <div class="arcade-mockup">
+        <div class="mock-header">★ DEV4GIRLS ARCADE ★</div>
+        <div class="mock-grid">
+          <div class="mock-card"><span>⭕❌</span><span class="card-num">01 TTT</span></div>
+          <div class="mock-card"><span>🔤</span><span class="card-num">02 AHO</span></div>
+          <div class="mock-card"><span>🃏</span><span class="card-num">03 HLC</span></div>
+          <div class="mock-card"><span>🟦</span><span class="card-num">04 SIM</span></div>
+        </div>
+        <div class="mock-footer highlight-ring">
+          dev4girls 2026 <span class="gear-footer">⚙ SETTINGS</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>⚙ Link en el Footer</h3>
+      <p>Texto/ícono discreto en el footer existente. Muy poco intrusivo, no ocupa espacio extra. Usuarios avanzados lo encuentran.</p>
+    </div>
+  </div>
+
+</div>
