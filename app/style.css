@@ -603,7 +603,7 @@ body {
     border: 5px solid var(--c2);
     border-radius: 50%;
     left: 168px;
-    top: 72px;
+    top: 82px;
 }
 
 .ahorcado-figure-part--body {
@@ -638,7 +638,7 @@ body {
     width: 56px;
     height: 6px;
     left: 138px;
-    top: 208px;
+    top: 186px;
     transform: rotate(-38deg);
     transform-origin: right center;
     background: var(--c2);
@@ -648,7 +648,7 @@ body {
     width: 56px;
     height: 6px;
     left: 188px;
-    top: 208px;
+    top: 186px;
     transform: rotate(38deg);
     transform-origin: left center;
     background: var(--c2);
